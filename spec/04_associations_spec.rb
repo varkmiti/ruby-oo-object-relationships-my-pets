@@ -55,9 +55,11 @@ describe "Associations" do
         @owner.buy_cat("Whiskers")
         @owner.buy_cat("Garfield")
 
-        expect(@owner.cats[0].name).to eq("Crookshanks")
-        expect(@owner.cats[1].name).to eq("Whiskers")
-        expect(@owner.cats[2].name).to eq("Garfield")
+        expect(@owner.cats).to include(
+          an_object_having_attributes(class: Cat, name: "Whiskers"),
+          an_object_having_attributes(class: Cat, name: "Crookshanks"),
+          an_object_having_attributes(class: Cat, name: "Garfield")
+        )
       end
     end
 
@@ -81,9 +83,11 @@ describe "Associations" do
         @owner.buy_dog("Fido")
         @owner.buy_dog("Rover")
 
-        expect(@owner.dogs[0].name).to eq("Snuffles")
-        expect(@owner.dogs[1].name).to eq("Fido")
-        expect(@owner.dogs[2].name).to eq("Rover")
+        expect(@owner.dogs).to include(
+          an_object_having_attributes(class: Dog, name: "Fido"),
+          an_object_having_attributes(class: Dog, name: "Snuffles"),
+          an_object_having_attributes(class: Dog, name: "Rover")
+        )
       end
     end
 
